@@ -1,0 +1,3 @@
+EfCoreDemo.API/obj/
+EfCoreDemo.API/bin/
+EfCoreDemo.API/DbContexts/*.txt
