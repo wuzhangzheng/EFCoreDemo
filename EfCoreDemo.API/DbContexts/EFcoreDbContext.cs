@@ -25,6 +25,8 @@ namespace EfCoreDemo.API.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //忽略映射某个字段
+            //modelBuilder.Entity<Department>(op=>op.Ignore("Description"));
         }
     }
 }

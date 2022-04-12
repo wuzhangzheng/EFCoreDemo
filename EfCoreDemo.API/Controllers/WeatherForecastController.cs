@@ -1,3 +1,5 @@
+using EfCoreDemo.API.DbContexts;
+using EfCoreDemo.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EfCoreDemo.API.Controllers;
@@ -11,22 +13,19 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+       
+
+    public WeatherForecastController(EFcoreDbContext context)
     {
-        _logger = logger;
+        Context = context;
     }
 
+    public EFcoreDbContext Context { get; }
+
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public User Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+       return Context.User.FirstOrDefault();
     }
 }
